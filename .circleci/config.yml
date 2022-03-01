@@ -7,15 +7,16 @@ executors:
       - image: circleci/node:12
 
 jobs:
-  docker:
-      - image: alpine/bombardier:latest
-    steps:
-      # For using docker commands.
-      - setup_remote_docker
+  docker_tag:
+    docker:
+        - image: alpine/bombardier:latest
+      steps:
+        # For using docker commands.
+        - setup_remote_docker
 
-      # Build the docker image
-      - checkout
-      - run: docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
+        # Build the docker image
+        - checkout
+        - run: docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
       
   deploy:
        machine: true
