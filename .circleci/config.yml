@@ -6,18 +6,7 @@ executors:
     docker:
       - image: circleci/node:12
 
-jobs:
-  docker_tag:
-    machine: true
-    steps:
-        # tag the docker image
-        - checkout
-        - run: 
-            name: tag image
-            command: |
-              docker pull alpine/bombardier
-              docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
-      
+jobs:     
   deploy:
        machine: true
        steps:
@@ -25,6 +14,8 @@ jobs:
          - run:
              name: pull and push Docker image to Heroku
              command: |
+               docker pull alpine/bombardier
+               docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
                sudo curl https://cli-assets.heroku.com/install.sh | sh
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a ${HEROKU_APP_NAME} web
