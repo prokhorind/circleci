@@ -18,7 +18,7 @@ jobs:
                docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
                sudo curl https://cli-assets.heroku.com/install.sh | sh
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
-               heroku container:push registry.heroku.com/${HEROKU_APP_NAME}/web -a=${HEROKU_APP_NAME}
+               HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push registry.heroku.com/${HEROKU_APP_NAME}/web -a=${HEROKU_APP_NAME}
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a ${HEROKU_APP_NAME} web
 
 workflows:
