@@ -22,7 +22,4 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
-      - deploy:
-          requires:
-            # Deploy after testing.
-            - deploy
+      - deploy
