@@ -10,7 +10,7 @@ jobs:
   docker_tag:
     docker:
         - image: alpine/bombardier:latest
-      steps:
+    steps:
         # For using docker commands.
         - setup_remote_docker
 
