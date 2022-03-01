@@ -11,14 +11,11 @@ jobs:
        machine: true
        steps:
          - checkout
-         - docker:
-               name: pull and push Docker image to Heroku
-               command: |
-                docker pull alpine/bombardier
-                docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/<process-type>
          - run:
              name: pull and push Docker image to Heroku
              command: |
+               docker pull alpine/bombardier
+               docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
                sudo curl https://cli-assets.heroku.com/install.sh | sh
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a ${HEROKU_APP_NAME} web
