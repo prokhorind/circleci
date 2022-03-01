@@ -3,7 +3,7 @@
 version: 2.1
 jobs:
   # Build the docker image and deploy it to Heroku.
-  build_and_deploy:
+  deploy:
     docker:
       - image: alpine/bombardier:latest
     steps:
@@ -22,7 +22,7 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
-      - build_and_deploy:
+      - deploy:
           requires:
             # Deploy after testing.
-            - build_and_deploy
+            - deploy
