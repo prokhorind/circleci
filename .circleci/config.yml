@@ -15,7 +15,7 @@ jobs:
              name: pull and push Docker image to Heroku
              command: |
                docker pull alpine/bombardier
-               docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
+               docker tag registry.heroku.com/${HEROKU_APP_NAME}/web alpine/bombardier 
                sudo curl https://cli-assets.heroku.com/install.sh | sh
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
                HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push registry.heroku.com/${HEROKU_APP_NAME}/web -a=${HEROKU_APP_NAME}
