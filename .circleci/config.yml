@@ -8,12 +8,14 @@ executors:
 
 jobs:
   docker_tag:
-    docker:
-        - image: alpine/bombardier:latest
     steps:
         # tag the docker image
         - checkout
-        - run: docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
+        - run: 
+          name: tag image
+          command: |
+              docker pull alpine/bombardier
+              docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
       
   deploy:
        machine: true
