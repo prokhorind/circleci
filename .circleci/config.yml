@@ -24,5 +24,4 @@ jobs:
 workflows:
  heroku_deploy:
    jobs:
-     - docker_tag
      - deploy
