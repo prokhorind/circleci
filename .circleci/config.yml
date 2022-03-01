@@ -11,10 +11,7 @@ jobs:
     docker:
         - image: alpine/bombardier:latest
     steps:
-        # For using docker commands.
-        - setup_remote_docker
-
-        # Build the docker image
+        # tag the docker image
         - checkout
         - run: docker tag alpine/bombardier registry.heroku.com/${HEROKU_APP_NAME}/web
       
